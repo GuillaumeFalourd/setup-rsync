@@ -7,15 +7,15 @@ runs:
     - name:
       run: |
         echo $OSTYPE
-        if [[ $OSTYPE == 'win'* ]]; then
-          echo "windows"
+        if [[ $OSTYPE == 'msys'* ]]; then
+          echo "windows runner detected"
           wsl --install
         elif [[ $OSTYPE == 'darwin'* ]]; then 
-          echo "macos"
+          echo "macos runner detected"
           brew install rsync
         else
-          echo "linux"
+          echo "ubuntu runner detected"
           sudo apt-get install rsync
         fi
-        rsync -V
+        rsync --version
       shell: bash
