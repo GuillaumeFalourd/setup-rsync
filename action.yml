@@ -14,6 +14,7 @@ runs:
           mv usr/bin/rsync.exe "C:\Program Files\Git\usr\bin\\"
           curl.exe --output libzstd-1.4.7-1-x86_64.pkg.tar.xz https://repo.msys2.org/msys/x86_64/libzstd-1.4.7-1-x86_64.pkg.tar.xz
           tar -xvf libzstd-1.4.7-1-x86_64.pkg.tar.xz
+          mv usr/bin/msys-zstd-1.dll "C:\Program Files\Git\usr\bin\\"
           ls
           curl.exe --output libxxhash-0.8.0-1-x86_64.pkg.tar.zst https://repo.msys2.org/msys/x86_64/libxxhash-0.8.0-1-x86_64.pkg.tar.zst
           zstd -d libxxhash-0.8.0-1-x86_64.pkg.tar.zst
