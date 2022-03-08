@@ -9,6 +9,7 @@ runs:
         if [[ $OSTYPE == 'msys'* ]]; then
           echo "windows runner detected"
           wsl --install -d Ubuntu
+          wslconfig /s Ubuntu
           wsl sudo apt-get install rsync
           echo "rsync installed on windows runner"
         elif [[ $OSTYPE == 'darwin'* ]]; then 
