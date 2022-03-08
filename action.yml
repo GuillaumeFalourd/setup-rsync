@@ -1,5 +1,5 @@
 name: 'Setup Rsync'
-description: 'Github actions to setup Rsync (all os supported)'
+description: 'Github actions to setup Rsync (all os supported) 🔄'
 
 runs:
   using: "composite"
@@ -8,7 +8,7 @@ runs:
       run: |
         if [[ $OSTYPE == 'msys'* ]]; then
           echo "windows runner detected"
-          wsl --install
+          wsl --install -d Ubuntu
           echo "rsync installed on windows runner"
         elif [[ $OSTYPE == 'darwin'* ]]; then 
           echo "macos runner detected"

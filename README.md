@@ -1,5 +1,7 @@
 # Setup Rsync
 
+[![Action test on Ubuntu](https://github.com/GuillaumeFalourd/setup-rsync/actions/workflows/ubuntu_action_test.yml/badge.svg)](https://github.com/GuillaumeFalourd/setup-rsync/actions/workflows/ubuntu_action_test.yml) [![Action test on MacOS](https://github.com/GuillaumeFalourd/setup-rsync/actions/workflows/macos_action_test.yml/badge.svg)](https://github.com/GuillaumeFalourd/setup-rsync/actions/workflows/macos_action_test.yml) [![Action test on Windows](https://github.com/GuillaumeFalourd/setup-rsync/actions/workflows/windows_action_test.yml/badge.svg)](https://github.com/GuillaumeFalourd/setup-rsync/actions/workflows/windows_action_test.yml)
+
 ![rsync](https://user-images.githubusercontent.com/22433243/157238945-fc0f23e3-f83b-480c-a324-9e9288e2ab19.png)
 
 ☞ Github actions to setup Rsync (all os supported) 🔄
