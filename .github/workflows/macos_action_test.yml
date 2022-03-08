@@ -10,4 +10,4 @@ jobs:
   macos:
     runs-on: macos-latest
     steps:
-      - uses: GuillaumeFalourd/setup-rsyncn@main
+      - uses: GuillaumeFalourd/setup-rsync@main

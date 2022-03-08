@@ -10,4 +10,4 @@ jobs:
   ubuntu:
     runs-on: ubuntu-latest
     steps:
-      - uses: GuillaumeFalourd/setup-rsyncn@main
+      - uses: GuillaumeFalourd/setup-rsync@main
