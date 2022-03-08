@@ -8,10 +8,10 @@ runs:
       run: |
         if [[ $OSTYPE == 'msys'* ]]; then
           echo "windows runner detected"
-          zstd -d ..\rsync-3.2.3-1-x86_64.pkg.tar.zst
+          zstd -d rsync-3.2.3-2-x86_64.pkg.tar.zst
           mv rsync-3.2.3-1-x86_64.pkg\usr\bin\ C:\Program Files\Git\usr\bin\
-          zstd -d ..\libzstd-1.4.7-1-x86_64.pkg.tar.xz
-          zstd -d ..\libxxhash-0.8.0-1-x86_64.pkg.tar.zst
+          zstd -d libzstd-1.4.7-1-x86_64.pkg.tar.xz
+          zstd -d libxxhash-0.8.0-1-x86_64.pkg.tar.zst
           echo "rsync installed on windows runner"
         elif [[ $OSTYPE == 'darwin'* ]]; then 
           echo "macos runner detected"
