@@ -10,8 +10,8 @@ runs:
           echo "windows runner detected"
           echo "wsl install"
           wsl --install -d Ubuntu
-          echo "wsl config"
-          wslconfig /s Ubuntu
+          # echo "wsl config"
+          # wslconfig /s Ubuntu
           echo "wsl --set-version"
           wsl --set-version Ubuntu-20.04
           echo "wsl apt-get"
