@@ -8,9 +8,14 @@ runs:
       run: |
         if [[ $OSTYPE == 'msys'* ]]; then
           echo "windows runner detected"
+          echo "wsl install"
           wsl --install -d Ubuntu
+          echo "wsl config"
           wslconfig /s Ubuntu
-          wsl sudo apt-get install rsync
+          echo "wsl --set-version"
+          wsl --set-version Ubuntu-20.04
+          echo "wsl apt-get"
+          wsl apt-get install rsync
           echo "rsync installed on windows runner"
         elif [[ $OSTYPE == 'darwin'* ]]; then 
           echo "macos runner detected"
