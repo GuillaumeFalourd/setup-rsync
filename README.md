@@ -4,7 +4,7 @@
 
 ![rsync](https://user-images.githubusercontent.com/22433243/157238945-fc0f23e3-f83b-480c-a324-9e9288e2ab19.png)
 
-☞ Github actions to setup Rsync (all os supported) 🔄
+☞ Github actions to setup [Rsync](https://linux.die.net/man/1/rsync) (all os supported) 🔄
 
 ## 📚 Usage
 
