@@ -1,0 +1,13 @@
+name: Action test on Ubuntu
+
+on:
+  schedule:
+    - cron: "0 2 * * MON-FRI" # Runs at 02:00 UTC
+  push:
+  workflow_dispatch:
+
+jobs:
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: GuillaumeFalourd/setup-rsyncn@main

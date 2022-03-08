@@ -1,0 +1,13 @@
+name: Action test on MacOS
+
+on:
+  schedule:
+    - cron: "0 4 * * MON-FRI" # Runs at 04:00 UTC
+  push:
+  workflow_dispatch:
+
+jobs:
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: GuillaumeFalourd/setup-rsyncn@main

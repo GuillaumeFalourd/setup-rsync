@@ -1,0 +1,20 @@
+name: 'Setup Rsync'
+description: 'Github actions to setup Rsync (all os supported)'
+
+runs:
+  using: "composite"
+  steps:
+    - name:
+      run: |
+        if [[ $OSTYPE == 'windowsnt'* ]]; then
+          echo "windows"
+          wsl --install
+        elif [[ $OSTYPE == 'darwin'* ]]; then 
+          echo "macos"
+          brew install rsync
+        else
+          echo "linux"
+          apt-get install rsync
+        fi
+        rsync -version
+      shell: bash
