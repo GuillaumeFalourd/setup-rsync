@@ -10,10 +10,8 @@ runs:
           echo "windows runner detected"
           echo "wsl install"
           wsl --install -d Ubuntu
-          # echo "wsl config"
-          # wslconfig /s Ubuntu
-          echo "wsl --set-version"
-          wsl --set-version Ubuntu
+          echo "wsl config"
+          wslconfig /s Ubuntu
           echo "wsl apt-get"
           wsl apt-get install rsync
           echo "rsync installed on windows runner"
@@ -27,4 +25,3 @@ runs:
           echo "rsync installed on ubuntu runner"
         fi
         rsync --version
-      shell: bash
