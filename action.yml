@@ -10,9 +10,8 @@ runs:
           echo "windows runner detected"
           curl.exe --output rsync-3.2.3-2-x86_64.pkg.tar.zst --url https://repo.msys2.org/msys/x86_64/rsync-3.2.3-1-x86_64.pkg.tar.zst
           zstd -d rsync-3.2.3-2-x86_64.pkg.tar.zst
-          ls
           tar -xvf rsync-3.2.3-2-x86_64.pkg.tar
-          mv rsync-3.2.3-2-x86_64.pkg/usr/bin/rsync.exe "C:\Program Files\Git\usr\bin\\"
+          mv usr/bin/rsync.exe "C:\Program Files\Git\usr\bin\\"
           zstd -d libzstd-1.4.7-1-x86_64.pkg.tar.xz
           zstd -d libxxhash-0.8.0-1-x86_64.pkg.tar.zst
           echo "rsync installed on windows runner"
