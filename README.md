@@ -13,7 +13,7 @@
 ```yaml
     runs-on: ubuntu-latest
     steps:
-      - uses: GuillaumeFalourd/setup-rsync@main
+      - uses: GuillaumeFalourd/setup-rsync@v1
       - run: rsync --version
 ```
 
@@ -22,7 +22,7 @@
 ```yaml
     runs-on: macos-latest
     steps:
-      - uses: GuillaumeFalourd/setup-rsync@main
+      - uses: GuillaumeFalourd/setup-rsync@v1
       - run: rsync --version
 ```
 
@@ -31,7 +31,7 @@
 ```yaml
     runs-on: windows-latest
     steps:
-      - uses: GuillaumeFalourd/setup-rsync@main
+      - uses: GuillaumeFalourd/setup-rsync@v1
       - run: rsync --version
 ```
 
