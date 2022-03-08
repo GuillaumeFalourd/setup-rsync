@@ -11,6 +11,8 @@ runs:
           curl.exe --output rsync-3.2.3-2-x86_64.pkg.tar.zst --url https://repo.msys2.org/msys/x86_64/rsync-3.2.3-1-x86_64.pkg.tar.zst
           zstd -d rsync-3.2.3-2-x86_64.pkg.tar.zst
           ls
+          tar -xvf rsync-3.2.3-2-x86_64.pkg.tar
+          ls
           cd rsync-3.2.3-2-x86_64.pkg\usr\bin\
           ls
           mv rsync-3.2.3-2-x86_64.pkg\usr\bin\rsync.exe C:\Program Files\Git\usr\bin\
