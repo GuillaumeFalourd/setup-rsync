@@ -4,7 +4,7 @@ description: 'Github actions to setup Rsync (all os supported) 🔄'
 runs:
   using: "composite"
   steps:
-    - name:
+    - name: Install Rsync
       run: |
         if [[ $OSTYPE == 'msys'* ]]; then
           echo "windows runner detected"
@@ -14,8 +14,11 @@ runs:
           mv usr/bin/rsync.exe "C:\Program Files\Git\usr\bin\\"
           curl.exe --output libzstd-1.4.7-1-x86_64.pkg.tar.xz https://repo.msys2.org/msys/x86_64/libzstd-1.4.7-1-x86_64.pkg.tar.xz
           tar -xf libzstd-1.4.7-1-x86_64.pkg.tar.xz
+          ls
           curl.exe --output libxxhash-0.8.0-1-x86_64.pkg.tar.zst https://repo.msys2.org/msys/x86_64/libxxhash-0.8.0-1-x86_64.pkg.tar.zst
           zstd -d libxxhash-0.8.0-1-x86_64.pkg.tar.zst
+          tar -xvf libxxhash-0.8.0-1-x86_64.pkg.tar
+          ls
           echo "rsync installed on windows runner"
         elif [[ $OSTYPE == 'darwin'* ]]; then 
           echo "macos runner detected"
@@ -26,5 +29,8 @@ runs:
           sudo apt-get install rsync
           echo "rsync installed on ubuntu runner"
         fi
-        rsync --version
+      shell: bash
+
+    - name: Check Rsync version
+      run: rsync --version
       shell: bash
