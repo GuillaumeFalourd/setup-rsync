@@ -8,11 +8,33 @@
 
 ## 📚 Usage
 
+### Ubuntu
+
 ```yaml
+    runs-on: ubuntu-latest
     steps:
       - uses: GuillaumeFalourd/setup-rsync@main
       - run: rsync --version
 ```
+
+### MacOs
+
+```yaml
+    runs-on: macos-latest
+    steps:
+      - uses: GuillaumeFalourd/setup-rsync@main
+      - run: rsync --version
+```
+
+### Windows
+
+```yaml
+    runs-on: windows-latest
+    steps:
+      - uses: GuillaumeFalourd/setup-rsync@main
+      - run: rsync --version
+```
+
 ## 🤝 Contributing
 
 ☞ If you're interested in contributing to this repository, please follow the [guidelines](https://github.com/GuillaumeFalourd/setup-rsync/blob/main/CONTRIBUTING.md)
