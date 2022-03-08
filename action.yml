@@ -35,3 +35,7 @@ runs:
     - name: Check Rsync version
       run: rsync --version
       shell: bash
+
+branding:
+  icon: arrow-right-circle
+  color: blue
