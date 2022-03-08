@@ -6,16 +6,18 @@ runs:
   steps:
     - name:
       run: |
-        echo $OSTYPE
         if [[ $OSTYPE == 'msys'* ]]; then
           echo "windows runner detected"
           wsl --install
+          echo "rsync installed on windows runner"
         elif [[ $OSTYPE == 'darwin'* ]]; then 
           echo "macos runner detected"
           brew install rsync
+          echo "rsync installed on macos runner"
         else
           echo "ubuntu runner detected"
           sudo apt-get install rsync
+          echo "rsync installed on ubuntu runner"
         fi
         rsync --version
       shell: bash

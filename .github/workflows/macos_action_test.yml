@@ -11,3 +11,4 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: GuillaumeFalourd/setup-rsync@main
+      - run: rsync --version
