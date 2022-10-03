@@ -24,7 +24,7 @@ _**Note**: This action is supported on **all runners** operating systems (`ubunt
 ```yaml
     runs-on: macos-latest
     steps:
-      - uses: GuillaumeFalourd/setup-rsync@v1
+      - uses: GuillaumeFalourd/setup-rsync@v1.1
       - run: rsync --version
 ```
 
@@ -33,7 +33,7 @@ _**Note**: This action is supported on **all runners** operating systems (`ubunt
 ```yaml
     runs-on: windows-latest
     steps:
-      - uses: GuillaumeFalourd/setup-rsync@v1
+      - uses: GuillaumeFalourd/setup-rsync@v1.1
       - run: rsync --version
 ```
 
