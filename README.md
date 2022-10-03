@@ -15,7 +15,7 @@ _**Note**: This action is supported on **all runners** operating systems (`ubunt
 ```yaml
     runs-on: ubuntu-latest
     steps:
-      - uses: GuillaumeFalourd/setup-rsync@v1
+      - uses: GuillaumeFalourd/setup-rsync@v1.1
       - run: rsync --version
 ```
 
