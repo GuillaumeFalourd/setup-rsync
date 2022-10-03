@@ -8,5 +8,5 @@ jobs:
   windows:
     runs-on: windows-latest
     steps:
-      - run: pacman -S rsync
+      - run: C:\msys64\pacman -S rsync
       - run: rsync --version
