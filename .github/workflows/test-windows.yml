@@ -1,0 +1,12 @@
+name: Test Windows
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - run: pacman -S rsync
+      - run: rsync --version
