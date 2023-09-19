@@ -4,14 +4,29 @@ description: 'Github actions to setup Rsync (all os supported) 🔄'
 runs:
   using: "composite"
   steps:
+    - name: Check OS
+      id: ostype
+      run: |
+        if [[ $OSTYPE == 'msys'* ]]; then
+          echo "Windows detected"
+          echo "ostype=windows" >> $GITHUB_OUTPUT
+        elif [[ $OSTYPE == 'darwin'* ]]; then 
+          echo "MacOS detected"
+          echo "ostype=macos" >> $GITHUB_OUTPUT
+        else
+          echo "Linux detected"
+          echo "ostype=linux" >> $GITHUB_OUTPUT
+        fi
+      shell: bash
+
     - name: Install Rsync Windows
-      if: {{ $OSTYPE == 'msys'* }}
+      if: steps.ostype.outputs.ostype == 'windows'
       uses: egor-tensin/setup-cygwin@v4
       with:
         packages: rsync
     
     - name: Install Rsync MacOS
-      if: {{ $OSTYPE == 'darwin'* }}
+      if: steps.ostype.outputs.ostype == 'macos'
       run: |
         echo "macos runner detected"
         brew install rsync
@@ -19,7 +34,7 @@ runs:
       shell: bash
     
     - name: Install Rsync Ubuntu
-      if: {{ $OSTYPE == 'linux'* }}
+      if: steps.ostype.outputs.ostype == 'linux'
       run: |
         echo "ubuntu runner detected"
         sudo apt-get install rsync
