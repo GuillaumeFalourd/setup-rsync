@@ -10,5 +10,5 @@ jobs:
   windows:
     runs-on: windows-latest
     steps:
-      - uses: GuillaumeFalourd/setup-rsync@main
+      - uses: GuillaumeFalourd/setup-rsync@test
       - run: rsync --version
