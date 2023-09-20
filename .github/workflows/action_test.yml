@@ -1,8 +1,6 @@
 name: Action test
 
 on:
-  schedule:
-    - cron: "0 4 * * MON-FRI" # Runs at 04:00 UTC
   push:
   workflow_dispatch:
 

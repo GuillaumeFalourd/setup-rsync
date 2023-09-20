@@ -3,7 +3,9 @@ name: Action test on MacOS
 on:
   schedule:
     - cron: "0 4 * * MON-FRI" # Runs at 04:00 UTC
-  push:
+  push:    
+    branches:
+    - main
   workflow_dispatch:
 
 jobs:
