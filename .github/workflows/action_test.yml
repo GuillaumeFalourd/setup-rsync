@@ -1,0 +1,23 @@
+name: Action test
+
+on:
+  schedule:
+    - cron: "0 4 * * MON-FRI" # Runs at 04:00 UTC
+  push:
+  workflow_dispatch:
+
+jobs:
+  rsyncversion:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    name:  ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          show-progress: ''
+      - name: Setup rsync
+        uses: './'
+      - run: rsync --version
