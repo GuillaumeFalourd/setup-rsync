@@ -17,5 +17,5 @@ jobs:
         with:
           show-progress: ''
       - name: Setup rsync
-        uses: './'
+        uses: ./
       - run: rsync --version
