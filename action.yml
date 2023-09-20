@@ -53,7 +53,7 @@ runs:
     - name: Setup SSH KEY
       run: |
         if [ -z "${{ inputs.ssh_key }}" ]; then
-          echo "INFO: No SSH KEY was informed"
+          echo "INFO: No SSH KEY was provided"
         else
           temp_path="${{ runner.temp }}"
           temp_path="${temp_path//\\//}"
