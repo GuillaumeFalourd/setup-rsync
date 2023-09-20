@@ -46,6 +46,7 @@ runs:
       if: steps.ostype.outputs.ostype == 'linux'
       run: |
         echo "ubuntu runner detected"
+        sudo apt-get update
         sudo apt-get install rsync
         echo "rsync installed on ubuntu runner"
       shell: bash
@@ -59,12 +60,14 @@ runs:
       run: |
         if [ -z "${{ inputs.ssh_key }}" ]; then
           echo "INFO: No SSH KEY provided."
-        else
+        elif [ -z "$CYGWIN" ]; then
           temp_path="${{ runner.temp }}"
           temp_path="${temp_path//\\//}"
           echo "${{ inputs.ssh_key }}" > "${temp_path}/sshkey"
           chmod 600 "${{runner.temp}}/sshkey"
           echo "ssh_key_path=${{runner.temp}}/sshkey" >> $GITHUB_OUTPUT
+        else
+          echo "This action is not supported on CYGWIN Bash"
         fi
       shell: bash
 
