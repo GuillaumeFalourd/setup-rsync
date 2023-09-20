@@ -3,8 +3,13 @@ description: 'Github actions to setup Rsync (all os supported) 🔄'
 
 inputs:
   ssh_key:
-    description: ssh_key to setup
+    description: SSH KEY to setup
     required: false
+
+outputs:
+  ssh_key_path:
+    description: "SSH KEY path"
+    value: ${{ steps.setup_ssh_key.outputs.ssh_key_path }}
 
 runs:
   using: "composite"
@@ -28,7 +33,6 @@ runs:
       if: steps.ostype.outputs.ostype == 'windows'
       run: |
         choco install --no-progress rsync
-      shell: bash
     
     - name: Install Rsync MacOS
       if: steps.ostype.outputs.ostype == 'macos'
@@ -51,14 +55,16 @@ runs:
       shell: bash
 
     - name: Setup SSH KEY
+      id: setup_ssh_key
       run: |
         if [ -z "${{ inputs.ssh_key }}" ]; then
-          echo "INFO: No SSH KEY was informed"
+          echo "INFO: No SSH KEY provided."
         else
           temp_path="${{ runner.temp }}"
           temp_path="${temp_path//\\//}"
           echo "${{ inputs.ssh_key }}" > "${temp_path}/sshkey"
           chmod 600 "${{runner.temp}}/sshkey"
+          echo "ssh_key_path=${{runner.temp}}/sshkey" >> $GITHUB_OUTPUT
         fi
       shell: bash
 
