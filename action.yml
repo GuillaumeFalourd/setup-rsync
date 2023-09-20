@@ -33,6 +33,7 @@ runs:
       if: steps.ostype.outputs.ostype == 'windows'
       run: |
         choco install --no-progress rsync
+      shell: bash
     
     - name: Install Rsync MacOS
       if: steps.ostype.outputs.ostype == 'macos'
