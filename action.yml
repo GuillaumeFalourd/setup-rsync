@@ -1,6 +1,11 @@
 name: 'Setup Rsync'
 description: 'Github actions to setup Rsync (all os supported) 🔄'
 
+inputs:
+  ssh_key:
+    description: ssh_key to setup
+    required: false
+
 runs:
   using: "composite"
   steps:
@@ -21,9 +26,9 @@ runs:
 
     - name: Install Rsync Windows
       if: steps.ostype.outputs.ostype == 'windows'
-      uses: egor-tensin/setup-cygwin@v4
-      with:
-        packages: rsync
+      run: |
+        choco install --no-progress rsync
+      shell: bash
     
     - name: Install Rsync MacOS
       if: steps.ostype.outputs.ostype == 'macos'
@@ -43,6 +48,18 @@ runs:
 
     - name: Check Rsync version
       run: rsync --version
+      shell: bash
+
+    - name: Setup SSH KEY
+      run: |
+        if [ -z "${{ inputs.ssh_key }}" ]; then
+          echo "INFO: No SSH KEY was informed"
+        else
+          temp_path="${{ runner.temp }}"
+          temp_path="${temp_path//\\//}"
+          echo "${{ inputs.ssh_key }}" > "${temp_path}/sshkey"
+          chmod 600 "${{runner.temp}}/sshkey"
+        fi
       shell: bash
 
 branding:
