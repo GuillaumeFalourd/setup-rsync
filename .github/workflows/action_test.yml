@@ -16,6 +16,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           show-progress: ''
-      - name: Setup rsync NOT Windows
+      - name: Setup rsync
         uses: './'
       - run: rsync --version
