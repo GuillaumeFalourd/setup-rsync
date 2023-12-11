@@ -47,7 +47,7 @@ runs:
       if: steps.ostype.outputs.ostype == 'linux'
       run: |
         echo "ubuntu runner detected"
-        sudo apt-get update
+        sudo apt-get -qq update
         sudo apt-get install rsync
         echo "rsync installed on ubuntu runner"
       shell: bash
