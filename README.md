@@ -14,7 +14,7 @@ _**Note**: This action is supported on **all runners** operating systems (`ubunt
 
 ```yaml
     steps:
-      - uses: GuillaumeFalourd/setup-rsync@v1.1
+      - uses: GuillaumeFalourd/setup-rsync@v1.2
       - run: rsync --version
 ```
 
@@ -22,7 +22,7 @@ _**Note**: This action is supported on **all runners** operating systems (`ubunt
 
 ```yaml
     steps:
-      - uses: GuillaumeFalourd/setup-rsync@v1.1
+      - uses: GuillaumeFalourd/setup-rsync@v1.2
         id: rsync
         with:
           ssh_key: ${{ secrets.MY_SSH_KEY }}
