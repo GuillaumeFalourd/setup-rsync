@@ -3,7 +3,9 @@ name: Action test on Windows
 on:
   schedule:
     - cron: "0 6 * * MON-FRI" # Runs at 06:00 UTC
-  push:
+  push:    
+    branches:
+    - main
   workflow_dispatch:
 
 jobs:

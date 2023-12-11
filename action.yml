@@ -1,39 +1,75 @@
 name: 'Setup Rsync'
 description: 'Github actions to setup Rsync (all os supported) 🔄'
 
+inputs:
+  ssh_key:
+    description: SSH KEY to setup
+    required: false
+
+outputs:
+  ssh_key_path:
+    description: "SSH KEY path"
+    value: ${{ steps.setup_ssh_key.outputs.ssh_key_path }}
+
 runs:
   using: "composite"
   steps:
-    - name: Install Rsync
+    - name: Check OS
+      id: ostype
       run: |
         if [[ $OSTYPE == 'msys'* ]]; then
-          echo "windows runner detected"
-          curl.exe --output rsync-3.2.3-2-x86_64.pkg.tar.zst --url https://repo.msys2.org/msys/x86_64/rsync-3.2.3-1-x86_64.pkg.tar.zst
-          zstd -d rsync-3.2.3-2-x86_64.pkg.tar.zst
-          tar -xvf rsync-3.2.3-2-x86_64.pkg.tar
-          mv usr/bin/rsync.exe "C:\Program Files\Git\usr\bin\\"
-          curl.exe --output libzstd-1.5.2-1-x86_64.pkg.tar.zst https://repo.msys2.org/msys/x86_64/libzstd-1.5.2-1-x86_64.pkg.tar.zst
-          zstd -d libzstd-1.5.2-1-x86_64.pkg.tar.zst
-          tar -xvf libzstd-1.5.2-1-x86_64.pkg.tar
-          mv usr/bin/msys-zstd-1.dll "C:\Program Files\Git\usr\bin\\"
-          curl.exe --output libxxhash-0.8.0-1-x86_64.pkg.tar.zst https://repo.msys2.org/msys/x86_64/libxxhash-0.8.0-1-x86_64.pkg.tar.zst
-          zstd -d libxxhash-0.8.0-1-x86_64.pkg.tar.zst
-          tar -xvf libxxhash-0.8.0-1-x86_64.pkg.tar
-          mv usr/bin/msys-xxhash-0.8.0.dll "C:\Program Files\Git\usr\bin\\"
-          echo "rsync installed on windows runner"
+          echo "Windows detected"
+          echo "ostype=windows" >> $GITHUB_OUTPUT
         elif [[ $OSTYPE == 'darwin'* ]]; then 
-          echo "macos runner detected"
-          brew install rsync
-          echo "rsync installed on macos runner"
+          echo "MacOS detected"
+          echo "ostype=macos" >> $GITHUB_OUTPUT
         else
-          echo "ubuntu runner detected"
-          sudo apt-get install rsync
-          echo "rsync installed on ubuntu runner"
+          echo "Linux detected"
+          echo "ostype=linux" >> $GITHUB_OUTPUT
         fi
+      shell: bash
+
+    - name: Install Rsync Windows
+      if: steps.ostype.outputs.ostype == 'windows'
+      run: |
+        choco install --no-progress rsync
+      shell: pwsh
+    
+    - name: Install Rsync MacOS
+      if: steps.ostype.outputs.ostype == 'macos'
+      run: |
+        echo "macos runner detected"
+        brew install rsync
+        echo "rsync installed on macos runner"
+      shell: bash
+    
+    - name: Install Rsync Ubuntu
+      if: steps.ostype.outputs.ostype == 'linux'
+      run: |
+        echo "ubuntu runner detected"
+        sudo apt-get -qq update
+        sudo apt-get -qq install rsync
+        echo "rsync installed on ubuntu runner"
       shell: bash
 
     - name: Check Rsync version
       run: rsync --version
+      shell: bash
+
+    - name: Setup SSH KEY
+      id: setup_ssh_key
+      run: |
+        if [ -z "${{ inputs.ssh_key }}" ]; then
+          echo "INFO: No SSH KEY provided."
+        elif [ ! -v CYGWIN ]; then
+          temp_path="${{ runner.temp }}"
+          temp_path="${temp_path//\\//}"
+          echo "${{ inputs.ssh_key }}" > "${temp_path}/sshkey"
+          chmod 600 "${{runner.temp}}/sshkey"
+          echo "ssh_key_path=${{runner.temp}}/sshkey" >> $GITHUB_OUTPUT
+        else
+          echo "This action is not supported on CYGWIN Bash"
+        fi
       shell: bash
 
 branding:
