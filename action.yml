@@ -61,7 +61,7 @@ runs:
       run: |
         if [ -z "${{ inputs.ssh_key }}" ]; then
           echo "INFO: No SSH KEY provided."
-        elif [ -z "$CYGWIN" ]; then
+        elif [ ! -v CYGWIN ]; then
           temp_path="${{ runner.temp }}"
           temp_path="${temp_path//\\//}"
           echo "${{ inputs.ssh_key }}" > "${temp_path}/sshkey"
