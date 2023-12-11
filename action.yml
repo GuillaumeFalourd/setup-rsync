@@ -48,7 +48,7 @@ runs:
       run: |
         echo "ubuntu runner detected"
         sudo apt-get -qq update
-        sudo apt-get install rsync
+        sudo apt-get -qq install rsync
         echo "rsync installed on ubuntu runner"
       shell: bash
 
